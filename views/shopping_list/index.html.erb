@@ -1,0 +1,30 @@
+<h1>Shopping List for <%= current_user.name %></h1>
+
+<div>
+    <h3>Amount of food items to buy: <span><%= @recipe_foods.length %></span></h3>
+    <h3>Total value of food needed: <span>$<%= @recipe_foods.map { |r| r.food.price * (r.quantity - r.food.quantity) }.sum %></span></h3>
+</div>
+<% if @shopping_list.empty? %>
+<p>No food added to the inventory yet.</p>
+<% else %>
+<table>
+    <thead>
+        <tr>
+            <th>Food</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @recipe_foods.each do |recipe|%>
+            <tr>
+                <td><%= recipe.food.name %> (<%= recipe.food.quantity %>)</td>
+                <td><%= recipe.quantity %> <%= recipe.food.measurement_unit %></td>
+                <td>$<%= recipe.food.price %></td>
+                <td>$<%= recipe.food.price.to_i * (recipe.quantity - recipe.food.quantity) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<% end %>

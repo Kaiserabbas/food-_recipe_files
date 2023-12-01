@@ -1,0 +1,24 @@
+<%= form_with(model: recipe, html:{} ) do |form| %>
+  <% if recipe.errors.any? %><h2>can't save recipe:</h2><% end %>
+        <div>
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+        </div>
+        <div>
+          <%= form.label :preparation_time %>
+          <%= form.number_field :preparation_time %>
+        </div>
+        <div>
+          <%= form.label :cooking_time %>
+          <%= form.number_field :cooking_time %>
+        </div>
+      </div>
+      <div >
+        <div>
+          <%= form.label :description %>
+          <%= form.text_area :description, rows: 4 %>
+        </div>
+        <div>
+          <%= form.submit "Save Recipe" %>
+        </div>
+<% end %>
